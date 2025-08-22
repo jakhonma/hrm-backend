@@ -13,5 +13,8 @@ class Role(models.Model):
         blank=True
     )
 
+    class Meta:
+        db_table = 'role'
+
     def __str__(self):
         return self.name

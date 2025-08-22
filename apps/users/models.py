@@ -8,7 +8,6 @@ from django.utils import timezone
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    
     username = models.CharField(
         _("username"),
         max_length=150,
@@ -45,7 +44,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True,
         blank=True
     )
-    date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
+    date_joined = models.DateTimeField(
+        _("date joined"), 
+        default=timezone.now
+    )
 
     objects = UserManager()
 

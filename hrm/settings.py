@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # DRF
     "rest_framework",
+    'corsheaders',
 
     # Spectacular
     "drf_spectacular",
@@ -38,6 +39,8 @@ INSTALLED_APPS += [
     'apps.users.apps.UsersConfig',
     'apps.rbac.apps.RbacConfig',
     'apps.organization.apps.OrganizationConfig',
+    'apps.subscription_plan.apps.SubscriptionPlanConfig',
+    'apps.subscription.apps.SubscriptionConfig',
     'apps.department.apps.DepartmentConfig',
     'apps.position.apps.PositionConfig',
     'apps.employee.apps.EmployeeConfig'
@@ -51,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'hrm.urls'
@@ -138,3 +142,9 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,  # Swagger UI'da schema jsonni yashirish
 }
+
+# CORS_ORIGIN_WHITELIST = (
+#     'http://10.0.1.36:5173',
+# )
+
+CORS_ORIGIN_ALLOW_ALL = True

@@ -65,5 +65,8 @@ class Employee(models.Model):
         default=EmployeeStatus.ACTIVE
     )
 
+    class Meta:
+        db_table = 'employee'
+
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

@@ -3,4 +3,5 @@ from apps.abstract.base_models import BaseAbsract
 
 
 class Position(BaseAbsract):
-    pass
+    class Meta:
+        db_table = 'position'

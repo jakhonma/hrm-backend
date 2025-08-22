@@ -9,3 +9,6 @@ class Department(BaseAbsract):
         on_delete=models.CASCADE,
         related_name="departments"
     )
+
+    class Meta:
+        db_table = 'department'
