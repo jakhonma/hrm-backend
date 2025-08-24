@@ -1,14 +1,17 @@
 from django.db import models
-from apps.organization.models import Organization
 from apps.abstract.base_models import BaseAbsract
 
 
 class Department(BaseAbsract):
-    organization = models.ForeignKey(
-        to=Organization,
-        on_delete=models.CASCADE,
-        related_name="departments"
+    head = models.OneToOneField(
+        to='employee.Employee',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='headed_departments'
     )
+    max_employee = models.PositiveSmallIntegerField()
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         db_table = 'department'

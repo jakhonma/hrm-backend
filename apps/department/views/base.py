@@ -1,7 +1,12 @@
-from apps.organization.serializers import OrganizationSerializer
-from apps.organization.services import OrganizationService
+from apps.department.serializers import DepartmentListSerializer, DepartmentSerializer
+from apps.department.services import DepartmentService
 
 
-class BaseOrganization:
-    serializer_class = OrganizationSerializer
-    services = OrganizationService()
+class BaseDepartment:
+    serializer_class = DepartmentListSerializer
+    services = DepartmentService()
+
+
+class BaseDepartmetCreate:
+    serializer_class = DepartmentSerializer
+    services = DepartmentService()

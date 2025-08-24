@@ -8,7 +8,7 @@ class DepartmentListSerializer(serializers.Serializer):
         max_length=600,
         allow_blank=True
     )
-    employee_count = serializers.SerializerMethodField()
-
-    def get_employee_count(self, obj):
-        return obj.employees.count()
+    is_active = serializers.BooleanField()
+    max_employee = serializers.IntegerField()
+    employee_count = serializers.IntegerField(read_only=True)
+    free_slots = serializers.IntegerField(read_only=True)

@@ -3,23 +3,22 @@ from apps.users.models import User
 from django.core.validators import RegexValidator
 from .validators import validate_birth_date
 from utils.choices import EmployeeStatus
-from apps.department.models import Department
-from apps.position.models import Position
+from django.conf import settings
 
 
 class Employee(models.Model):
-    user = models.ForeignKey(
-        to=User,
+    user = models.OneToOneField(
+        to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='rel_user'
     )
     department = models.ForeignKey(
-        to=Department,
+        to='department.Department',
         on_delete=models.CASCADE,
         related_name='employees'
     )
     position = models.ForeignKey(
-        to=Position,
+        to='position.Position',
         on_delete=models.SET_NULL,
         null=True,
         blank=True

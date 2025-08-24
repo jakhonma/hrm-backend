@@ -2,6 +2,7 @@ from django.urls import path, include
 
 
 urlpatterns = [
-    path('organization/', include('apps.organization.urls')),
+    path('department/', include('apps.department.urls')),
+    path('employee/', include('apps.employee.urls')),
 ]
 

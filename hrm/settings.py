@@ -38,9 +38,6 @@ INSTALLED_APPS += [
     'apps.authentication.apps.AuthenticationConfig',
     'apps.users.apps.UsersConfig',
     'apps.rbac.apps.RbacConfig',
-    'apps.organization.apps.OrganizationConfig',
-    'apps.subscription_plan.apps.SubscriptionPlanConfig',
-    'apps.subscription.apps.SubscriptionConfig',
     'apps.department.apps.DepartmentConfig',
     'apps.position.apps.PositionConfig',
     'apps.employee.apps.EmployeeConfig'
