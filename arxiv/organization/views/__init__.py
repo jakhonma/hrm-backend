@@ -1,1 +1,0 @@
-from .organization_list import OrganizationListAPIView

@@ -1,3 +1,5 @@
+from datetime import timedelta
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # DRF
     "rest_framework",
+    'rest_framework_simplejwt',
     'corsheaders',
 
     # Spectacular
@@ -129,7 +132,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "users.User"
 
 REST_FRAMEWORK = {
-    # DRF schema generator sifatida Spectacular ni ulaymiz
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticated",
+    ),
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.ScopedRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {
+        # login endpoint uchun brute-force himoya
+        "login": "5/min",     # kerak bo‘lsa 10/min, 20/min ga o‘zgartiring
+    },
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
@@ -145,3 +160,19 @@ SPECTACULAR_SETTINGS = {
 # )
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=14),
+    "ROTATE_REFRESH_TOKENS": True,          # har refreshda yangi refresh beriladi
+    "BLACKLIST_AFTER_ROTATION": True,        # eski refresh blacklist qilinadi
+    "UPDATE_LAST_LOGIN": True,
+    "ALGORITHM": "RS256",                    # professional: asimmetrik imzo
+    # RSA kalitlaringizni .env dan o‘qing
+    "SIGNING_KEY": os.environ.get("JWT_PRIVATE_KEY"),
+    "VERIFYING_KEY": os.environ.get("JWT_PUBLIC_KEY"),
+    # Agar RS kalitlar yo‘q bo‘lsa, vaqtincha HS256 + SECRET_KEYdan foydalaning
+    # "ALGORITHM": "HS256",
+    # "SIGNING_KEY": settings.SECRET_KEY,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
