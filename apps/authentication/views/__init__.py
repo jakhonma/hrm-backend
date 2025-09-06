@@ -1,3 +1,3 @@
-from .login import LoginTokenObtainPairView
-from .refresh import CustomTokenRefreshView
+from .login import LoginAPIView
+# from .refresh import CustomTokenRefreshView
 from .logout import LogoutView

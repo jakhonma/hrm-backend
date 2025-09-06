@@ -9,12 +9,15 @@ from django.conf import settings
 class Employee(models.Model):
     user = models.OneToOneField(
         to=settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name='rel_user'
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='employees'
     )
     department = models.ForeignKey(
         to='department.Department',
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
         related_name='employees'
     )
     position = models.ForeignKey(
@@ -63,6 +66,7 @@ class Employee(models.Model):
         choices=EmployeeStatus.choices,
         default=EmployeeStatus.ACTIVE
     )
+    is_head = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'employee'

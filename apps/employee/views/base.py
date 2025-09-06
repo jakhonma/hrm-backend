@@ -1,7 +1,15 @@
-from apps.employee.serializers import EmployeeDepartmentListSerializer
+from apps.employee.serializers import EmployeeDepartmentListSerializer, EmployeeCreateUpdateSerializer, EmployeeSerializer
 from apps.employee.services import EmployeeService
 
 
-class BaseEmployeeDepartment:
-    serializer_class = EmployeeDepartmentListSerializer
+class BaseEmaployee:
     services = EmployeeService()
+
+
+class BaseEmployeeCreateUpdate(BaseEmaployee):
+    serializer_class = EmployeeCreateUpdateSerializer
+
+
+
+class BaseEmployeeDepartment(BaseEmaployee):
+    serializer_class = EmployeeDepartmentListSerializer

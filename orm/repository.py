@@ -34,7 +34,7 @@ class BaseRepository:
 
     @classmethod
     def update(cls, pk: int, data: Dict[str, Any]) -> Model:
-        instance = cls.get_by_id(pk)
+        instance = cls.get_by_id(pk=pk)
         for attr, value in data.items():
             setattr(instance, attr, value)
         instance.save()
@@ -42,7 +42,7 @@ class BaseRepository:
 
     @classmethod
     def delete(cls, pk: int) -> None:
-        instance = cls.get_by_id(pk)
+        instance = cls.get_by_id(pk=pk)
         instance.delete()
     
     @classmethod

@@ -1,8 +1,8 @@
-from .base import BaseDepartmetCreate
+from .base import BaseDepartmetCreateUpdate
 from rest_framework import generics
 
 
-class DeparmentCreateAPIView(BaseDepartmetCreate, generics.CreateAPIView):
+class DeparmentCreateAPIView(BaseDepartmetCreateUpdate, generics.CreateAPIView):
 
     def perform_create(self, serializer):
         print(serializer.validated_data)

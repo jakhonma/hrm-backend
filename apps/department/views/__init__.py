@@ -1,2 +1,3 @@
 from .create import DeparmentCreateAPIView
-from .list import DepartmentOrganizationListAPIView
+from .detail import DepartmentRetrieveAPIView, DeparmentDeleteAPIView, DepartmentUpdateAPIView
+from .list import DepartmentOrganizationListAPIView, DepartmentEmployeesAPIView

@@ -1,1 +1,3 @@
 from .employee_list import EmployeeDepartmentListSerializer
+from .employee_create_update import EmployeeCreateUpdateSerializer
+from .employee_detail import EmployeeSerializer

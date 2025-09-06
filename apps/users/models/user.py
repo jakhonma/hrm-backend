@@ -1,15 +1,17 @@
 from django.db import models
-from .validators import phone_validator
+from apps.users.validators import phone_validator
 from django.contrib.auth.hashers import make_password
-from .managers import UserManager
-from .utils import AbstractBaseUser, PermissionsMixin
+from apps.users.managers import UserManager
+from apps.users.utils import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractBaseUser, PermissionsMixin):
     one_id = models.CharField(
         max_length=50, 
-        unique=True
+        unique=True,
+        null=True,
+        blank=True
     )  # MTRK-000001
     phone = models.CharField(
         max_length=17,
